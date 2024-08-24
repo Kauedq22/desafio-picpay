@@ -33,7 +33,7 @@ public class Wallet {
     private String password;
     private BigDecimal balance = BigDecimal.ZERO;
     @ManyToOne
-    private WalletType WalletType;
+    private WalletType walletType;
 
     public Wallet(String fullName, String email, String cpf, String password,BigDecimal balance, WalletType walletType) {
         this.fullName = fullName;
@@ -41,13 +41,24 @@ public class Wallet {
         this.cpf = cpf;
         this.balance = balance;
         this.password = password;
-        WalletType = walletType;
+        this.walletType = walletType;
     }
+    
     public void pay(BigDecimal value){
         this.balance = this.balance.subtract(value);
     }
     public void receive(BigDecimal value){
         this.balance = this.balance.add(value);
     }
+    public boolean isBalancerEqualOrGreatherThan(BigDecimal value){
+        return this.balance.doubleValue() >= value.doubleValue();
+    }
+    public boolean isTransferAllowedForWalletType(){
+        return this.walletType.equals(WalletType.Enum.USER.get());
+    }
+    public boolean isSameWalletType(Wallet otherWallet) {
+        return this.id == otherWallet.getId();
+    }
+    
     
 }
