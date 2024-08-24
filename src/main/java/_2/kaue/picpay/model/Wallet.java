@@ -43,7 +43,11 @@ public class Wallet {
         this.password = password;
         WalletType = walletType;
     }
-
-    
+    public void pay(BigDecimal value){
+        this.balance = this.balance.subtract(value);
+    }
+    public void receive(BigDecimal value){
+        this.balance = this.balance.add(value);
+    }
     
 }
