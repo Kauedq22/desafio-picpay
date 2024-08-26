@@ -50,14 +50,14 @@ public class Wallet {
     public void receive(BigDecimal value){
         this.balance = this.balance.add(value);
     }
-    public boolean isBalancerEqualOrGreatherThan(BigDecimal value){
+    public boolean isBalancerEqualOrGreatherThan(BigDecimal value) {
         return this.balance.doubleValue() >= value.doubleValue();
     }
-    public boolean isTransferAllowedForWalletType(){
+    public boolean isTransferAllowedForWalletType() {
         return this.walletType.equals(WalletType.Enum.USER.get());
     }
-    public boolean isSameWalletType(Wallet otherWallet) {
-        return this.id == otherWallet.getId();
+    public boolean isSameWalletType(Wallet otherWallet) {  
+        return this.id.equals(otherWallet.getId());  
     }
     
     
